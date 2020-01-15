@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+<xs:annotation>
+<xs:documentation>
+Tide data from NOAA
+</xs:documentation>
+</xs:annotation>
+
+
+    <xs:complexType name="PredictionRecord">
+      <xs:annotation>
+        <xs:documentation>
+          Tide prediction record. t = date and time, v = value (tide elevation), type = H/L for High or Low
+        </xs:documentation>
+      </xs:annotation>
+        <xs:attribute name="t" type="xs:string" />
+      <xs:attribute name="v" type="xs:float" />
+      <xs:attribute name="type" type="xs:string"/>
+    </xs:complexType>
+
+<xs:element name="data">
+   <xs:annotation>
+      <xs:documentation>
+      This is the root node of the XML data
+</xs:documentation>
+</xs:annotation>
+   <xs:complexType>
+      <xs:sequence>
+         <xs:element name="pr" type="PredictionRecord" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:element>
+
+
+
+</xs:schema>

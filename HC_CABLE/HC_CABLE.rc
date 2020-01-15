@@ -1,0 +1,303 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\HC_CABLE.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\HC_CABLE.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 205, 66
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "About"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,20,20
+    LTEXT           "HC CABLE, Version 3.0",IDC_STATIC,46,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright © 2008-2020",IDC_STATIC,46,26,114,8
+    LTEXT           "Washington State Department of Transportation",IDC_STATIC,46,35,152,18
+END
+
+IDD_STARTUPPAGE DIALOG 0, 0, 156, 129
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
+CAPTION "Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Cable File",IDC_STATIC,7,7,32,8
+    EDITTEXT        IDC_CABLE_FILE,7,17,101,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_CABLE_FILE_BTN,111,17,16,14
+    LTEXT           "Tide File",IDC_STATIC,7,37,28,8
+    EDITTEXT        IDC_TIDE_FILE,7,48,102,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_TIDE_FILE_BTN,111,48,16,14
+    CONTROL         "Daylight Saving Time",IDC_DST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,73,83,10
+END
+
+IDD_CABLEVIEWPAGE DIALOGEX 0, 0, 201, 325
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "Cables"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_MODE,7,7,134,61,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Load",IDC_LOAD,147,7,22,12
+    PUSHBUTTON      "Save",IDC_SAVE,172,7,22,12,BS_ICON
+    CONTROL         "",IDC_DATEPICKER,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_SHORTDATECENTURYFORMAT | WS_TABSTOP,7,22,101,15
+    LTEXT           "Tide",IDC_TIDE_LABEL,9,25,14,8
+    EDITTEXT        IDC_TIDE,27,22,30,14,ES_RIGHT | ES_AUTOHSCROLL
+    LTEXT           "ft",IDC_TIDE_UNIT,60,26,10,8
+    DEFPUSHBUTTON   "Update",IDC_UPDATE,110,23,38,14
+    CONTROL         "",IDC_CABLE_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,41,187,252
+    LTEXT           "Time",IDC_CURRENT_TIME,7,294,187,8
+    LTEXT           "CalcTime",IDC_CALCULATION_TIME,7,308,187,8
+END
+
+IDD_PROGRESS DIALOG 0, 0, 130, 87
+STYLE DS_SYSMODAL | DS_SETFONT | DS_SETFOREGROUND | DS_3DLOOK | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_BORDER
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "Loading Tide Data",IDC_MESSAGE,7,34,116,17
+    CONTROL         "",IDC_PROGRESS,"msctls_progress32",0x0,7,53,116,14
+    CTEXT           "Hood Canal Bridge\nCable Tension Calculator",IDC_STATIC,7,7,116,28
+    CTEXT           "WSDOT © 2008",IDC_STATIC,7,73,116,8
+END
+
+IDD_RECORD DIALOGEX 0, 0, 183, 119
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Record Cable Tensions"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_NACTUALPRESSURE,136,30,24,14,ES_RIGHT | ES_AUTOHSCROLL | WS_GROUP
+    CTEXT           "Cable",IDC_CABLE_HEADING,21,7,106,18
+    LTEXT           "Time",IDC_STATIC,7,31,17,8
+    LTEXT           "Tide",IDC_STATIC,7,50,17,8
+    CTEXT           "Measured",IDC_STATIC,98,32,35,8
+    CTEXT           "Predicted",IDC_STATIC,98,49,35,8
+    CTEXT           "Remarks",IDC_STATIC,40,66,61,8
+    CONTROL         "",IDC_NORTHDATETIMEPICKER,"SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | WS_GROUP | WS_TABSTOP | 0x8,26,28,62,15
+    EDITTEXT        IDC_NTIDE,26,47,46,14,ES_RIGHT | ES_AUTOHSCROLL | WS_GROUP
+    LTEXT           "ft",IDC_STATIC,75,50,10,8
+    LTEXT           "psi",IDC_STATIC,166,32,10,8
+    EDITTEXT        IDC_NPREDPRESSURE,136,47,24,14,ES_RIGHT | ES_AUTOHSCROLL | ES_READONLY | WS_GROUP
+    LTEXT           "psi",IDC_STATIC,166,49,10,8
+    EDITTEXT        IDC_REMARK,7,76,169,14,ES_AUTOHSCROLL | WS_GROUP
+    PUSHBUTTON      "Close",IDOK,140,98,36,14
+    PUSHBUTTON      "<",IDC_PREV,7,7,14,14
+    PUSHBUTTON      ">",IDC_NEXT,161,7,15,14
+    LTEXT           "Static",IDC_CURRENT_TIME,7,104,79,8
+    PUSHBUTTON      "Reset",IDC_RESET,100,98,33,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,0,0,0
+ PRODUCTVERSION 3,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "Washington State Department of Transportation"
+            VALUE "FileDescription", "Hood Canal Bridge Cable Tension Calculator"
+            VALUE "FileVersion", "3.0.0.0"
+            VALUE "InternalName", "HC_CABLE.exe"
+            VALUE "LegalCopyright", "Copyright © 2008-2020 WSDOT.  All rights reserved."
+            VALUE "OriginalFilename", "HC_CABLE.exe"
+            VALUE "ProductName", "HC Cable"
+            VALUE "ProductVersion", "3.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 198
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 59
+    END
+
+    IDD_STARTUPPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 149
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 121
+    END
+
+    IDD_CABLEVIEWPAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 194
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 316
+    END
+
+    IDD_PROGRESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 123
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 81
+    END
+
+    IDD_RECORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 176
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_CABLEVIEWPAGE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_RECORD AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "&About HC_CABLE..."
+    IDS_COMPANY             "Washington State Department of Transportation"
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\HC_CABLE.rc2"  // non-Microsoft Visual C++ edited resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

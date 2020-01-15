@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="HC_CABLE" Language="1033" Version="3.0.0.0" Manufacturer="WSDOT" UpgradeCode="2ce6f46b-536e-4df1-afb3-83ac2bdd649f">
+		<Package InstallerVersion="200" Compressed="yes" Platform="x64" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="HC_CABLE" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+
+    <Property Id="WIXUI_EXITDIALOGOPTIONALTEXT" Value="Installation complete"/>
+  </Product>
+
+
+  <Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFiles64Folder">
+        <Directory Id="WSDOT" Name="WSDOT">
+				<Directory Id="INSTALLFOLDER" Name="HC_CABLE" />
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="HC_Cable_Menu_Folder" Name="HC Cable"/>
+      </Directory>
+      <Directory Id="CommonAppDataFolder">
+        <Directory Id="Tide_Data_Folder" Name="HC_Tides"/>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER" Source="\ARP\HC_CABLE\HC_CABLE\x64\Release\">
+			<Component Id="ProductComponent" Guid="AA346B36-9C22-4497-B862-3505912C22CF" Win64="yes" >
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+        <File Id="HC_CABLE.exe" Name="HC_CABLE.exe" KeyPath="yes"/>
+        <File Id="HC_TIDES.exe" Name="HC_TIDES.exe" />
+        <File Id="xerces_c_3_1.dll" Name="xerces-c_3_1.dll" />
+        <File Id="HC_CABLE.CFG" Name="HC_CABLE.CFG" />
+        <File Id="TidalPredictions.xsd" Name="TidalPredictions.xsd" />
+        <File Id="HC_Cable_User_Guide.pdf" Name="HC_Cable_User_Guide.pdf" Source="\ARP\HC_CABLE\"/>
+
+      </Component>
+
+      <Component Id="MenuComponent" Guid="DCB53779-E6A1-4AEA-A750-B4F73E7FDBCC" Win64="yes">
+        <RegistryKey Root="HKCU" Key="Software\HC Cable">
+          <RegistryValue Value="" Type="string" KeyPath="yes"/>
+        </RegistryKey>
+
+        <Shortcut Id="HC_CABLE" Name="HC Cable" Description="HCB Cable Gauge Pressure Predictions" Target="[INSTALLFOLDER]HC_CABLE.exe" IconIndex="0" Directory="HC_Cable_Menu_Folder" />
+        <Shortcut Id="HC_TIDES" Name="HC Tides" Description="Generates tidal predictions at HCB" Target="[INSTALLFOLDER]HC_TIDES.exe" IconIndex="0" Directory="HC_Cable_Menu_Folder"/>
+        <Shortcut Id="HC_USER_GUIDE" Name="User Guide" Description="User Guide" Target="[INSTALLFOLDER]HC_Cable_User_Guide.pdf" Directory="HC_Cable_Menu_Folder"/>
+
+        <RemoveFolder Id="Remove_HC_Cable_Menu_Folder" Directory="HC_Cable_Menu_Folder" On="uninstall"/>
+        <RemoveFile Id="Remove_Tide_Data" Directory="Tide_Data_Folder" Name="*" On="uninstall"/>
+        <RemoveFolder Id="Remove_Tide_Data_Folder" Directory="Tide_Data_Folder" On="uninstall"/>
+      </Component>
+		</ComponentGroup>
+  </Fragment>
+</Wix>

@@ -1,0 +1,78 @@
+YEARTIDE
+User Documentation
+
+Yeartide is computer software written in 32 bit Microsoft Visual Basic, Version 4.0. This 
+program produces yearly tide predictions for the Hood Canal Bridge at ten-minute 
+intervals. The output is a text file written to disk. The input is a text file in FORTRAN 
+format (one day per record) containing one year of tide predictions for Seattle, 
+Washington. The input file may be obtained from the National Oceanic and Atmospheric 
+Administration (NOAA) at the following address:
+Tom Kendricks or Tod Ehret
+National Ocean Service
+Products and Services Branch
+1305 East-West Highway
+Silver Spring, MD  20910
+Voice:	301.713.2877
+FAX:	301.713.4436
+The name of the output file is derived from the date included on each line of the input 
+file. The file name is automatically assigned as YEAR??.TID. NOAA assigns the input 
+file name. For the current year, it is Seattle.t97. Specifications for the format of the output 
+and input files are described in the attached documentation from HNTB Corporation and 
+NOAA.
+Although NOAA can provide tide predictions that correct for Daylight Savings Time, the 
+input file should be in Standard Time only. The YEARTIDE algorithm assumes that all 
+times in the input file are consecutive. Program output is also in Standard Time for this 
+reason.
+The predictions are approximations based upon the assumption that the tide elevation at 
+times between the predicted high and predicted low can be graphed by joining the high 
+and low points with a cosine curve segment. Although actual tide behavior will not 
+conform precisely to this pattern, the deviation is not significantly greater than the normal 
+deviation from the predicted high and low.
+The predicted high and low values are calculated by applying correction factors to the 
+Seattle predictions. Different correction factors apply to the high tide and the low tide. 
+Both the time and elevation are corrected. The correction factors used by YEARTIDE are 
+NOAA’s published correction factors for Port Gamble. They are imbedded in the 
+program code (declarations section) as constants. They can be adjusted if experience 
+indicates that tides at the Hood Canal Bridge are typically earlier or later (higher or 
+lower) than Port Gamble. 
+Tide
+Correction Factor
+High Level
+Seattle times 0.90 
+High Time
+Seattle minus 9 minutes
+Low Level
+Seattle times 0.95
+Low Time
+Seattle minus 5 minutes
+The source code can be accessed from the project file Yeartide.vbp, which loads the code 
+module (Main.bas) and a form (frmMain.frm). The compiled program is an executable 
+file named Yeartide.exe.
+To create the output file, the source file containing the predicted highs and lows for 
+Seattle should be in the same subdirectory as the executable program. The output file 
+with predictions for Port Gamble will also be created in this subdirecory.
+When the program is run, the first screen has text boxes for entering the time and 
+elevation of the last tide of the previous year and the first tide of the following year. This 
+data is not included in the input file. It is required to calculate predictions at time 
+increments between midnight and the first (or last) tide of the year. If this data is not 
+entered, the output file will not include predictions before the first tide on January 1 or 
+after the last tide on December 31.
+The text boxes contain null values, which are in the same format as the input data. They 
+must be filled in with data using the same number of characters with the decimal in the 
+same position. Include blank spaces before the time or height if the number of characters 
+is less than the number of null characters.
+When the Run button is clicked, an input box will appear prompting the user for the name 
+of the input file. When OK is clicked, the program will process the data and produce the 
+output file.
+The last line of the output file is a 32 bit checksum in hexadecimal format, which can be 
+used to verify file integrity. The predictions themselves should be sampled for accuracy 
+by manually calculating the corrections for several high and low tides and comparing the 
+result to the output file. Pay closer attention to the first day and the last day of the year. 
+The programming routines for these two days are different than the rest of the year and 
+therefor should be verified separately. The incremental predictions between the high and 
+low should be checked to see that each subsequent value is slightly greater than the 
+preceding value for incoming tides and slightly less for outgoing tides. Tides elevations 
+ten minutes before and ten minutes after the predicted high or low will typically be the 
+same as the predicted high or low. Any abrupt changes between subsequent values 
+indicate an error in the program or data.
+
