@@ -92,7 +92,12 @@ BOOL CCableApp::InitInstance()
 	dlg.IsDST( IsDST() );
 #endif
 
+   CString strCableFile = GetProfileString(_T("Options"), _T("CableFile"), dlg.GetOptionsPage().GetCableFile());
+   dlg.GetOptionsPage().SetCableFile(strCableFile);
+
 	INT_PTR nResponse = dlg.DoModal();
+
+   WriteProfileString(_T("Options"), _T("CableFile"), dlg.GetOptionsPage().GetCableFile());
 
 #if defined _WIN32_WCE
 	WriteProfileInt(_T("Options"),_T("IsDST"),(int)dlg.IsDST());

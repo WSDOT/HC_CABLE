@@ -34,6 +34,7 @@ CCableRecords::~CCableRecords(void)
 void CCableRecords::Init(long nCables)
 {
 	m_Records.reserve(nCables);
+   m_Records.clear();
 	for ( int i = 0; i < nCables; i++ )
 	{
 		m_Records.push_back(std::make_pair(CCableRecord(),CCableRecord()));

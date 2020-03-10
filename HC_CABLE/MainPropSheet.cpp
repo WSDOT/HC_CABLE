@@ -104,27 +104,32 @@ BOOL CMainPropSheet::OnInitDialog()
 	SetIcon(hIcon,TRUE);
 	SetIcon(hIcon,FALSE);
 
+   m_CableFile = m_OptionsPage.GetCableFile();
+   m_TideFile = m_OptionsPage.GetTideFile();
+
 	return bResult;
 }
 
 BOOL CMainPropSheet::LoadWaterElevations(CWaterElevations* pWaterElevations)
 {
-	if ( !m_OptionsPage.DidTideDataChange() && m_bTidesLoaded )
+	if ( m_TideFile == m_OptionsPage.GetTideFile() && m_bTidesLoaded )
 		return TRUE;
 
 	CProgressDlg progress;
 	CLoadWaterElevationCallback*  pLoadTideCallback = &progress.m_TideCallback;
 
+   m_TideFile = m_OptionsPage.GetTideFile();
+
 	progress.Create(CProgressDlg::IDD);
 
 	// station id for Bangor
-//	int result = pTides->LoadFromFile(9445133,m_OptionsPage.GetTideFile(),pLoadTideCallback);
-	int result = pWaterElevations->LoadFromFile(m_OptionsPage.GetTideFile(),pLoadTideCallback);
+//	int result = pTides->LoadFromFile(9445133,m_TideFile,pLoadTideCallback);
+	int result = pWaterElevations->LoadFromFile(m_TideFile,pLoadTideCallback);
 
 	if ( result == FILE_NOT_FOUND )
 	{
 		CString strMessage;
-		strMessage.Format(_T("Error loading tidal data. File %s could not be found"),m_OptionsPage.GetTideFile());
+		strMessage.Format(_T("Error loading tidal data. File %s could not be found"), m_TideFile);
 		AfxMessageBox(strMessage,MB_OK | MB_ICONEXCLAMATION );
 		m_bTidesLoaded = FALSE;
 		return FALSE;
@@ -153,15 +158,16 @@ BOOL CMainPropSheet::LoadWaterElevations(CWaterElevations* pWaterElevations)
 
 BOOL CMainPropSheet::LoadCableData(CCables* pCables)
 {
-	if ( !m_OptionsPage.DidCableDataChange() && m_bCablesLoaded )
+	if ( m_CableFile == m_OptionsPage.GetCableFile() && m_bCablesLoaded )
 		return TRUE;
 
-	int result = pCables->LoadFromFile(m_OptionsPage.GetCableFile());
+   m_CableFile = m_OptionsPage.GetCableFile();
+	int result = pCables->LoadFromFile(m_CableFile);
 
 	if ( result == FILE_NOT_FOUND )
 	{
 		CString strMessage;
-		strMessage.Format(_T("Error loading cable data. File %s could not be found"),m_OptionsPage.GetCableFile());
+		strMessage.Format(_T("Error loading cable data. File %s could not be found"), m_CableFile);
 		AfxMessageBox(strMessage,MB_OK | MB_ICONEXCLAMATION );
 		m_bCablesLoaded = FALSE;
 		return FALSE;

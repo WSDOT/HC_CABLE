@@ -40,18 +40,15 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	CString m_CableFile;
 	CString m_TideFile;
-	CString m_LastCableFile;
-	CString m_LastTideFile;
 #if defined _WIN32_WCE
 	BOOL m_bIsDST;
 #endif
 
 	DECLARE_MESSAGE_MAP()
 public:
-	BOOL DidCableDataChange();
-	BOOL DidTideDataChange();
-	CString GetCableFile();
-	CString GetTideFile();
+   void SetCableFile(CString& strCableFile);
+	const CString& GetCableFile() const;
+	const CString& GetTideFile() const;
 #if defined _WIN32_WCE
 	bool IsDST();
 	void IsDST(bool bIsDST);

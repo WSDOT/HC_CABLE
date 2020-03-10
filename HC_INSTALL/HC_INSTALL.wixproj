@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>b27ab224-07fb-4be1-a586-849e7b47a842</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>HC_CABLE</OutputName>
+    <OutputName>HC_CABLE_3.1</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -17,6 +17,15 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DefineConstants>Debug</DefineConstants>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />

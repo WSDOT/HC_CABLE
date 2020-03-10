@@ -34,9 +34,6 @@ IMPLEMENT_DYNAMIC(CStartupPage, CPropertyPage)
 
 CStartupPage::CStartupPage()
 	: CPropertyPage(CStartupPage::IDD)
-	, m_LastCableFile(_T(""))
-	, m_LastTideFile(_T(""))
-	, m_TideFile(_T(""))
 #if defined _WIN32_WCE
 	, m_bIsDST(FALSE)
 #endif
@@ -50,15 +47,11 @@ CStartupPage::CStartupPage()
    CString path = file.GetFilePath();
    path.Replace(file.GetFileName(),_T(""));
 
-   CTime now = CTime::GetCurrentTime();
+   m_CableFile.Format(_T("%s%s"), path, _T("HC_Cable.CFG"));
 
    CString strTidesFolder = CTides::GetTidesFolder();
+   CTime now = CTime::GetCurrentTime();
    m_TideFile = CTides::GetTidesFile(strTidesFolder, now.GetMonth(), now.GetYear());
-
-	m_CableFile.Format(_T("%s%s"),path,_T("HC_Cable.CFG"));
-
-	m_LastCableFile = m_CableFile;
-	m_LastTideFile = m_TideFile;
 }
 
 CStartupPage::~CStartupPage()
@@ -68,12 +61,6 @@ CStartupPage::~CStartupPage()
 void CStartupPage::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-
-	if ( pDX->m_bSaveAndValidate )
-	{
-		m_LastCableFile = m_CableFile;
-		m_LastTideFile  = m_TideFile;
-	}
 
 	DDX_Text(pDX,IDC_CABLE_FILE,m_CableFile);
 	DDX_Text(pDX,IDC_TIDE_FILE,m_TideFile);
@@ -192,22 +179,17 @@ void CStartupPage::OnSize(UINT nType, int cx, int cy)
 	pTideBtn->MoveWindow(rTideBtn);
 }
 
-BOOL CStartupPage::DidCableDataChange()
+void CStartupPage::SetCableFile(CString& strCableFile)
 {
-	return m_LastCableFile != m_CableFile;
+   m_CableFile = strCableFile;
 }
 
-BOOL CStartupPage::DidTideDataChange()
-{
-	return m_LastTideFile != m_TideFile;
-}
-
-CString CStartupPage::GetCableFile()
+const CString& CStartupPage::GetCableFile() const
 {
 	return m_CableFile;
 }
 
-CString CStartupPage::GetTideFile()
+const CString& CStartupPage::GetTideFile() const
 {
 	return m_TideFile;
 }

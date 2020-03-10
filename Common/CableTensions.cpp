@@ -34,6 +34,7 @@ CCableTensions::~CCableTensions(void)
 void CCableTensions::Init(long nCables)
 {
 	m_CableTensions.reserve(nCables);
+   m_CableTensions.clear();
 	for ( int i = 0; i < nCables; i++ )
 	{
 		m_CableTensions.push_back(std::make_pair(CCableTensionSolution(),CCableTensionSolution()));

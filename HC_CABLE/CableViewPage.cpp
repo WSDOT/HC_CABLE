@@ -201,19 +201,19 @@ void CCableViewPage::OnUpdateForTide()
    if (mode == ELEVATION_MODE)
    {
       time = CTime::GetCurrentTime();
+
+      CCableApp* pApp = (CCableApp*)AfxGetApp();
+      if (pApp->IsDST())
+      {
+         // if it is DST, subtract 1 hour because it will be
+         // added back in UpdateCableTensions
+         time -= CTimeSpan(0, 1, 0, 0);
+      }
    }
    else
    {
       time = m_UserDate;
    }
-
-	CCableApp* pApp = (CCableApp*)AfxGetApp();
-	if ( pApp->IsDST() )
-	{
-		// if it is DST, subtract 1 hour because it will be
-		// added back in UpdateCableTensions
-		time -= CTimeSpan(0,1,0,0);
-	}
 
    if (mode == ELEVATION_MODE)
    {
@@ -569,6 +569,9 @@ BOOL CCableViewPage::OnSetActive()
 		pModes->SetCurSel(0);
 		OnModeChanged();
 	}
+
+   UpdateCableList();
+   OnUpdateForTide();
 
 	return CPropertyPage::OnSetActive();
 }

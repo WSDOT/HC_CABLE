@@ -47,6 +47,8 @@ public:
 	void IsDST(bool bIsDST);
 #endif
 
+   CStartupPage& GetOptionsPage() { return m_OptionsPage; }
+
 
 protected:
 	DECLARE_MESSAGE_MAP()
@@ -54,6 +56,9 @@ protected:
 	CStartupPage m_OptionsPage;
 	CCableViewPage m_CableViewPage;
 	CAboutPage m_AboutPage;
+
+   CString m_CableFile;
+   CString m_TideFile;
 
 	BOOL m_bTidesLoaded;
 	BOOL m_bCablesLoaded;
